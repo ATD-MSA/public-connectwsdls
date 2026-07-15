@@ -1,0 +1,14 @@
+name: Security Checks
+
+on:
+  push:
+  # branches: [develop, qa, QA, xat, XAT, master, main]
+jobs:
+  security-check:
+    uses: ATD-DevSecOps/sharedActions/.github/workflows/security-check.yaml@main
+    with:
+      jira_project: ATDCAST
+      jira_label: ${{ github.event.repository.name }}
+    secrets:
+      ATLASSIAN_API_TOKEN_EMAIL: ${{ secrets.ATLASSIAN_API_TOKEN_EMAIL }}
+      ATLASSIAN_API_TOKEN: ${{ secrets.ATLASSIAN_API_TOKEN }}
